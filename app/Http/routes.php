@@ -24,3 +24,4 @@ Route::get('about', 'PageController@about');
 Route::get('contact', 'PageController@contact');
 
 Route::get('questions/{question}', 'QuestionController@show');
+Route::get('questions', 'QuestionController@index');

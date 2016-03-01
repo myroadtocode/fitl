@@ -17,7 +17,10 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        $questions = Question::all();
+        $data = array();
+        $data['objects'] = $questions;
+        return view('questions.index', $data);
     }
 
     /**
