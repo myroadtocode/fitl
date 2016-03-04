@@ -11,5 +11,10 @@ class Question Extends Model
     	'description' => ['required']
      
 	];
+// access comments using e.g $question->comments
+	public function comments(){
+        
+		return $this->hasMany('App\Comment')->orderBy('created_at', 'desc');
+	}
 
 }
