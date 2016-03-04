@@ -2,10 +2,14 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use \Esensi\Model\Model;
 
 class Question Extends Model
 {
-
+	protected $rules = [
+    	'title' => ['required'],
+    	'description' => ['required']
+     
+	];
 
 }

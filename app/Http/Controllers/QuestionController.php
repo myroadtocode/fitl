@@ -44,9 +44,26 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-       echo '<pre>';
-       echo $request->title;
-       echo '</pre>';
+       $question = new Question;
+       // set the question's data from the form data
+       $question->title = $request->title;
+       $question->description = $request->description;
+       $question->code = $request->code;
+
+       // create yhe new question in the database
+       if ( !$question->save() ){
+            $errors = $question->getErrors();
+            // redirect to the create page
+            // pass along the errors
+            return redirect()
+                ->action('QuestionController@create')
+                ->with('errors', $errors)
+                ->withInput();
+       }
+       // success
+       return redirect()
+            ->action('QuestionController@index')
+            ->with('message', '<div class="alert alert-success">Question successfuly created</div>');
     }
 
     /**
