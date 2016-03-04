@@ -23,6 +23,7 @@ Route::get('about', 'PageController@about');
 
 Route::get('contact', 'PageController@contact');
 
+Route::delete('questions/{question}', 'QuestionController@destroy');
 Route::get('questions/{question}/edit', 'QuestionController@edit');
 Route::put('questions/{question}/update', 'QuestionController@update');
 Route::post('question/store', 'QuestionController@store');

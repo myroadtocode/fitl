@@ -20,4 +20,6 @@
 
 {!! Form::close() !!}
 
+@include('questions.partials.delete_object')
+
 @endsection
