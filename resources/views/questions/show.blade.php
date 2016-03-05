@@ -13,11 +13,5 @@
 	    {{ $object->code }}
 	</pre>
 	<p>Question date: {{ $object->created_at }} </p>
-
-	<h2>Comments</h2>
-	@foreach($object->comments as $comment)
-		<p> {{ $comment->comment }} </p>
-		<div><small>{{ $comment->created_at->diffForHumans() }} </small></div>
-
-	@endforeach
+	@include('questions.comments.partials.display')
 @endsection
