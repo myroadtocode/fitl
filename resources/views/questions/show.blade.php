@@ -13,5 +13,6 @@
 	    {{ $object->code }}
 	</pre>
 	<p>Question date: {{ $object->created_at }} </p>
+	
 	@include('questions.comments.partials.display')
 @endsection
