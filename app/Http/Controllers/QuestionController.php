@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Question;
+use App\Language;
 
 class QuestionController extends Controller
 {
@@ -33,6 +34,7 @@ class QuestionController extends Controller
         $question = new Question;
         $data = array();
         $data['question'] = $question;
+        $data['languages'] = Language::lists('name', 'id');
         return view('questions.create',$data);
     }
 
@@ -61,6 +63,7 @@ class QuestionController extends Controller
                 ->withInput();
        }
        // success
+       $question->languages()->sync($request->language_id);
        return redirect()
             ->action('QuestionController@index')
             ->with('message', '<div class="alert alert-success">Question successfuly created</div>');
@@ -91,7 +94,8 @@ class QuestionController extends Controller
     {
         
         $question = Question::findOrFail($id);
-        return view('questions.edit', ['question' => $question]);
+        $languages = Language::lists('name', 'id');
+        return view('questions.edit', ['question' => $question, 'languages' => $languages]);
 
     }
 
@@ -110,6 +114,8 @@ class QuestionController extends Controller
         $question->title = $request->title;
         $question->description = $request->description;
         $question->code = $request->code;
+        $question->languages()->sync($request->language_id);
+
         // error
         if ( !$question->save() ){
             $errors = $question->getErrors();
@@ -121,6 +127,7 @@ class QuestionController extends Controller
                 ->withInput();
        }
        // success
+
        return redirect()
             ->action('QuestionController@index')
             ->with('message', '<div class="alert alert-success">This question was updated!</div>');
