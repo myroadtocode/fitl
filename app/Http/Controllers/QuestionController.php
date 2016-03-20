@@ -21,6 +21,8 @@ class QuestionController extends Controller
         $questions = Question::all();
         $data = array();
         $data['objects'] = $questions;
+        $data['languages'] = Language::all();
+        
         return view('questions.index', $data);
     }
 
