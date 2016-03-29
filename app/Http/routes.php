@@ -28,6 +28,7 @@ Route::get('questions/{question}/edit', 'QuestionController@edit');
 Route::put('questions/{question}/update', 'QuestionController@update');
 Route::post('question/store', 'QuestionController@store');
 Route::get('questions/create', 'QuestionController@create');
+Route::get('questions/search', 'QuestionController@search');
 Route::get('questions/{question}', 'QuestionController@show');
 Route::get('questions', 'QuestionController@index');
 
